@@ -1,0 +1,74 @@
+.container {
+    width: 960px;
+    margin: auto;
+}
+
+.dropdown-login {
+    display: none;
+    position: absolute;
+    background: #212529;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.show {
+    display: block;
+}
+
+.form{
+    padding: 50px 100px;
+    background: #212529;
+    border-radius: 5px;
+}
+
+h1, h3{
+    text-align: center;
+    margin: 50px;
+}
+
+.form label{
+    color: white;
+}
+
+.form-group, .form-check{
+    margin-bottom: 10px;
+}
+
+.register-button{
+    display: block;
+    width: fit-content;
+    margin: 50px auto auto;
+}
+
+.load-docs{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
+}
+
+.load-docs .form-control-file, .load-docs button{
+    margin-top: 20px;
+}
+
+.load-docs .labe {
+    margin-top: 10px;
+}
+
+.docs-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.activation-message{
+    text-align: center;
+    font-size: 24px;
+    margin: 100px auto;
+    width: 80%;
+    background: #212529;
+    color: white;
+    padding: 50px 100px;
+    border-radius: 5px;
+}

@@ -1,0 +1,72 @@
+<div th:fragment="header" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+    <header class="p-3 text-bg-dark">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a th:href="@{/}" class="nav-link px-2 text-white">Головна</a></li>
+                    <li><a th:href="@{/profile}" class="nav-link px-2 text-white">Особистий кабінет</a></li>
+                    <li sec:authorize="hasAnyAuthority('ADMIN')"><a th:href="@{/user}"  class="nav-link px-2 text-white">Користувачі</a></li>
+                </ul>
+
+                <div sec:authorize="isAuthenticated()">
+                    <a th:href="@{/profile}" class="btn btn-outline-warning" sec:authentication="name"></a>
+                    <form class="d-inline ms-2" th:action="@{/logout}" method="post">
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-body" id="exampleModalLabel2">Вихід</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-body">
+                                        Ви впевнені, що хочете вийти?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Скасувати</button>
+                                        <button type="submit" class="btn btn-danger">Вийти</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input class="btn btn-danger" type="button" data-toggle="modal" data-target="#exampleModal2" value="Вийти"/>
+                    </form>
+                </div>
+
+
+                <div sec:authorize="isAnonymous()">
+                    <button onclick="showLogin()" role="button" class="btn btn-outline-light me-2 dropdown-button" >Вхід</button>
+                    <a th:href="@{/registration}" class="btn btn-warning">Реєстрація</a>
+
+                    <div class="dropdown-login" id="dropdown-login">
+                        <form th:action="@{/login}" method="post">
+                            <div class="form-group">
+                                <label for="email">Пошта</label>
+                                <input required type="email" class="form-control" id="email" name="username" placeholder="email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleDropdownFormPassword1">Пароль</label>
+                                <input required type="password" class="form-control" id="exampleDropdownFormPassword1" name="password" placeholder="Пароль">
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                                <label class="form-check-label" for="dropdownCheck">
+                                    Запам'ятати мене
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-warning">Вхід</button>
+                        </form>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/registration}">Зареєструватися</a>
+                        <a class="dropdown-item" th:href="@{/forgot-password/email}">Забули пароль?</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
